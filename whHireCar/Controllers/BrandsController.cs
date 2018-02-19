@@ -15,22 +15,16 @@ namespace whHireCar.Controllers
     {
         private readonly ICarService _service;
 
-        /////////////////////////////////////////////////////////////////////////////
-        // constructor
         public BrandsController(ICarService service)
         {
             _service = service;
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Index()
         {
             return View(_service.GetBrands());
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -45,15 +39,11 @@ namespace whHireCar.Controllers
             return View(brand);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Create()
         {
             return View();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("Id,Name")] Brand brand)
@@ -66,8 +56,6 @@ namespace whHireCar.Controllers
             return View(brand);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,8 +70,6 @@ namespace whHireCar.Controllers
             return View(brand);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("Id,Name")] Brand brand)
@@ -100,8 +86,6 @@ namespace whHireCar.Controllers
             return View(brand);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,8 +100,6 @@ namespace whHireCar.Controllers
             return View(brand);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)

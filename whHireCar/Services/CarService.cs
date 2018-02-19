@@ -12,39 +12,29 @@ namespace whHireCar.Services
     {
         private readonly ApplicationDbContext _context;
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public CarService(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public void AddBrand(Brand brand)
         {
             _context.Add(brand);
             _context.SaveChanges();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public void AddCar(Car car)
         {
             _context.Add(car);
             _context.SaveChanges();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public void AddCustomer(Customer customer)
         {
             _context.Add(customer);
             _context.SaveChanges();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public void DeleteBrand(int id)
         {
             var brand = _context.Brands.FirstOrDefault(m => m.Id == id);
@@ -52,8 +42,6 @@ namespace whHireCar.Services
             _context.SaveChanges();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public void DeleteCar(int id)
         {
             var carx = _context.Cars.FirstOrDefault(m => m.Id == id);
@@ -61,8 +49,6 @@ namespace whHireCar.Services
             _context.SaveChanges();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public void DeleteCustomer(int id)
         {
             var customer = _context.Customers.FirstOrDefault(m => m.Id == id);
@@ -70,23 +56,17 @@ namespace whHireCar.Services
             _context.SaveChanges();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public Brand GetBrandById(int? id)
         {
             return _context.Brands.FirstOrDefault(m => m.Id == id);
            
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IEnumerable<Brand> GetBrands()
         {
             return _context.Brands.AsEnumerable();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public Car GetCardById(int? id)
         {
             return _context.Cars
@@ -94,8 +74,6 @@ namespace whHireCar.Services
                         .FirstOrDefault(m => m.Id == id);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IEnumerable<Car> GetCars(bool? isHired = null)
         {
             if (isHired.HasValue)
@@ -112,92 +90,46 @@ namespace whHireCar.Services
             }
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public Customer GetCustomerById(int? id)
         {
             return _context.Customers.FirstOrDefault(m => m.Id == id);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IEnumerable<Customer> GetCustomers()
         {
             return _context.Customers.AsEnumerable();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public void UpdateBrand(Brand brand)
         {
-            try
-            {
-                _context.Update(brand);
-                _context.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                //TODO xxx_gb rozwiązać ten problem!!!!
-                throw;
-            }
+
+            _context.Update(brand);
+            _context.SaveChanges();
+
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public void UpdateCar(Car car)
         {
-            try
-            {
-                _context.Update(car);
-                _context.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                //TODO xxx_gb rozwiązać ten problem!!!!
-                throw;
-            }
+            _context.Update(car);
+            _context.SaveChanges();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public void UpdateCustomer(Customer customer)
         {
-            try
-            {
-                _context.Update(customer);
-                _context.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                //TODO xxx_gb rozwiązać ten problem!!!!
-
-                //if (!CustomerExists(customer.Id))
-                //{
-                //    return NotFound();
-                //}
-                //else
-                {
-                    throw;
-                }
-            }
+             _context.Update(customer);
+             _context.SaveChanges();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         private bool CustomerExists(int id)
         {
             return _context.Customers.Any(e => e.Id == id);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         private bool CarExists(int id)
         {
             return _context.Cars.Any(e => e.Id == id);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IEnumerable<Car> GetCarsByBrand(int brandId, bool isHired = false)
         {
             IEnumerable<Car> Cars;
@@ -218,8 +150,6 @@ namespace whHireCar.Services
             return Cars;
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IEnumerable<Hire> GetHireStory()
         {
             return _context.Hires
@@ -229,47 +159,33 @@ namespace whHireCar.Services
                         .AsEnumerable();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         private bool RentExists(int id)
         {
             return _context.Hires.Any(e => e.Id == id);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public void AddHire(Hire rent)
         {
             _context.Add(rent);
             _context.SaveChanges();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public void ReturnCar(Hire rent)
         {
-            try
-            {
-                int carId = _context.Hires
-                                  .Where(y => y.Id == rent.Id)
-                                  .Select(z => z.HiredCar.Id)/*.Cast<int>()*/
-                                  .FirstOrDefault();
-                var car = _context.Cars
-                                .Where(x => x.Id == carId)
-                                .SingleOrDefault();
-                car.IsHired = false;
-                _context.Update(car);
-                _context.Update(rent);
-                _context.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                throw;
-            }
+            int carId = _context.Hires
+                              .Where(y => y.Id == rent.Id)
+                              .Select(z => z.HiredCar.Id)/*.Cast<int>()*/
+                              .FirstOrDefault();
+            var car = _context.Cars
+                            .Where(x => x.Id == carId)
+                            .SingleOrDefault();
+            car.IsHired = false;
+            _context.Update(car);
+            _context.Update(rent);
+            _context.SaveChanges();
+
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public Hire GetHireById(int? id)
         {
             if (id.HasValue)
@@ -286,8 +202,6 @@ namespace whHireCar.Services
             }
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IEnumerable<Hire> GetCurrntHired()
         {
             return  _context.Hires

@@ -15,15 +15,11 @@ namespace hireCar.Web.ApiControllers
     {
         private readonly ICarService _service;
 
-        /////////////////////////////////////////////////////////////////////////////
-        // constructor
         public HireStoryApiController(ICarService service)
         {
             _service = service;
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        // 
         [HttpGet]
         public IEnumerable<Hire> HireStory()
         {

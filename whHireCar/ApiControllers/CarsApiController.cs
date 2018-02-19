@@ -17,8 +17,6 @@ namespace hireCar.Web.ApiControllers
     {
         private readonly ICarService _service;
 
-        /////////////////////////////////////////////////////////////////////////////
-        // constructor
         public CarsApiController(ICarService service)
         {
             _service = service;
@@ -57,25 +55,6 @@ namespace hireCar.Web.ApiControllers
                 return BadRequest();
             }
             _service.UpdateCar(car);
-
-            //_context.Entry(car).State = EntityState.Modified;
-
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!CarExists(id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-
             return NoContent();
         }
 

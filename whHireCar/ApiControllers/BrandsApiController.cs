@@ -16,16 +16,12 @@ namespace hireCar.ApiControllers
     public class BrandsApiController : Controller
     {
         private readonly ICarService _service;
-
-        /////////////////////////////////////////////////////////////////////////////
-        // constructor
+                
         public BrandsApiController(ICarService service)
         {
             _service = service;
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         [HttpGet]
         public IEnumerable<Brand> GetBrands()
         {

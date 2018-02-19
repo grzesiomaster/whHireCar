@@ -16,22 +16,16 @@ namespace whHireCar.Controllers
     {
         private readonly ICarService _service;
 
-        /////////////////////////////////////////////////////////////////////////////
-        // constructor
         public CarsController(ICarService service)
         {
             _service = service;
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Index()
         {
             return View(_service.GetCars());
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -46,8 +40,6 @@ namespace whHireCar.Controllers
             return View(car);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Create()
         {
             var brands = _service.GetBrands();
@@ -55,8 +47,6 @@ namespace whHireCar.Controllers
             return View();
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Car car)
@@ -77,8 +67,6 @@ namespace whHireCar.Controllers
             return View(car);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,8 +83,6 @@ namespace whHireCar.Controllers
             return View(car);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Car car)
@@ -122,8 +108,6 @@ namespace whHireCar.Controllers
             return View(car);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -138,8 +122,6 @@ namespace whHireCar.Controllers
             return View(car);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)

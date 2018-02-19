@@ -17,8 +17,6 @@ namespace hireCar.Web.ApiControllers
     {
         private readonly ICarService _service;
 
-        /////////////////////////////////////////////////////////////////////////////
-        // constructor
         public CustomersApiController( ICarService service)
         {
             _service = service;

@@ -17,38 +17,28 @@ namespace whHireCar.Controllers
     {
         private readonly ICarService _service;
 
-        /////////////////////////////////////////////////////////////////////////////
-        // constructor
         public HireCarController(ICarService service)
         {
             _service = service;
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult HireStory()
         {
             var rentStory = _service.GetHireStory();
             return View(rentStory);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult ReturnCar()
         {
             var rented = _service.GetCurrntHired();
             return View(rented);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Index()
         {
             return RedirectToAction("ReturnCar");
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult HireCar()
         {
             HireCarViewModel hirevm = new HireCarViewModel();
@@ -58,16 +48,12 @@ namespace whHireCar.Controllers
             return View(hirevm);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public JsonResult ChangeBrand(int id)
         {
             IEnumerable<Car> Cars = _service.GetCarsByBrand(id);
             return Json(new SelectList(Cars,"Id","Model"));
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public JsonResult LoadBrands()
         {
             IEnumerable<Brand> Brands;
@@ -75,8 +61,6 @@ namespace whHireCar.Controllers
             return Json(new SelectList(Brands, "Id", "Name"));
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("CarId,UserId")] HireCarViewModel postModel)
@@ -93,8 +77,6 @@ namespace whHireCar.Controllers
             return RedirectToAction("ReturnCar");
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         public IActionResult Return(int? id)
         {
             var rent = _service.GetHireById(id);
@@ -102,8 +84,6 @@ namespace whHireCar.Controllers
             return View(rent);
         }
 
-        /////////////////////////////////////////////////////////////////////////////
-        //
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Return(int id, [Bind("Id,HireDate,ReturnDate")] Hire rent)
