@@ -26,13 +26,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">whHireCar</a>
+                @*<a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">whHireCar</a>*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Cars" asp-action="Index">All cars</a></li>
+                    <li><a asp-area="" asp-controller="Brands" asp-action="Index">Brands</a></li>
+                    <li><a asp-area="" asp-controller="Customers" asp-action="Index">Customers</a></li>
+                    <li><a asp-area="" asp-controller="HireCar" asp-action="HireCar">Hire car</a></li>
+                    <li><a asp-area="" asp-controller="HireCar" asp-action="ReturnCar">Hired cars</a></li>
+                    <li><a asp-area="" asp-controller="HireCar" asp-action="HireStory">Hire story</a></li>
+
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -42,7 +46,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - whHireCar</p>
+            <p>&copy; 2018 - whHireCar by grzesiomaster</p>
         </footer>
     </div>
 

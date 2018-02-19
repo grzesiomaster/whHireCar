@@ -1,0 +1,56 @@
+﻿@model IEnumerable<whHireCar.Models.Hire>
+
+@{
+    ViewData["Title"] = "RentStory";
+}
+
+<h2>Hire story:</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Hire Date:
+        </th>
+        <th>
+            Return Time:
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Brand
+        </th>
+        <th>
+            Client
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.HireDate.ToString("yyyy-MM-dd")
+            </td>
+            <td>
+                @if (item.ReturnDate.HasValue)
+                {
+                    @item.ReturnDate.Value.ToString("yyyy-MM-dd");
+                }
+                else
+                {
+                    <p>Hasn't returned</p>
+                }
+            </td>
+            <td>
+                @item.HiredCar.Model
+            </td>
+            <td>
+                @item.HiredCar.Brand.Name
+            </td>
+            <td>
+                @item.HiringCustomer.Name
+            </td>
+        </tr>
+    }
+</table>
+

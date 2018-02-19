@@ -14,6 +14,10 @@ namespace whHireCar.Data
             : base(options)
         {
         }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Hire> Hires { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

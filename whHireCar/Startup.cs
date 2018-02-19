@@ -34,6 +34,7 @@ namespace whHireCar
                 .AddDefaultTokenProviders();
 
             // Add application services.
+            services.AddScoped<ICarService, CarService>();
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
