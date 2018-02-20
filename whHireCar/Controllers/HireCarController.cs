@@ -65,16 +65,24 @@ namespace whHireCar.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("CarId,UserId")] HireCarViewModel postModel)
         {
-            Car car = _service.GetCardById(postModel.CarId);
-            car.IsHired = true;
-            Hire rent = new Hire();
-            rent.HireDate = DateTime.Now;
-            rent.HiredCar = _service.GetCardById(postModel.CarId);
-            rent.HiringCustomer = _service.GetCustomerById(postModel.UserId);
-            //IF poprawne dane
-            _service.UpdateCar(car);
-            _service.AddHire(rent);
-            return RedirectToAction("ReturnCar");
+            if (ModelState.IsValid && postModel.UserId.HasValue && postModel.CarId.HasValue)
+            {
+                Car car = _service.GetCardById(postModel.CarId);
+                car.IsHired = true;
+                Hire rent = new Hire();
+                rent.HireDate = DateTime.Now;
+                rent.HiredCar = _service.GetCardById(postModel.CarId);
+                rent.HiringCustomer = _service.GetCustomerById(postModel.UserId);
+
+                _service.UpdateCar(car);
+                _service.AddHire(rent);
+                return RedirectToAction("ReturnCar");
+            }
+            else
+            {
+				//TODO requierd message containing info validation fail
+                return RedirectToAction("HireCar"); 
+            }
         }
 
         public IActionResult Return(int? id)

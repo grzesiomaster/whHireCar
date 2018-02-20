@@ -13,7 +13,7 @@ namespace whHireCar.ViewModels
         public IEnumerable<Brand> Brands { get; set; }
         public IEnumerable<Customer> Customers { get; set; }
 
-        public int UserId { get; set; }
-        public int CarId { get; set; }
+        public int? UserId { get; set; }
+        public int? CarId { get; set; }
     }
 }
