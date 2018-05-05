@@ -2,5 +2,9 @@
   {
     "outputFile": "wwwroot/js/site.es5.js",
     "inputFile": "wwwroot/js/site.js"
+  },
+  {
+    "outputFile": "wwwroot/js/HireCar.es5.js",
+    "inputFile": "wwwroot/js/HireCar.js"
   }
 ]
