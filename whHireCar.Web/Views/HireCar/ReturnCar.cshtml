@@ -1,0 +1,49 @@
+﻿@model IEnumerable<whHireCar.Domain.Hire>
+
+@{
+    ViewData["Title"] = "ReturnCar";
+}
+
+<h2>Hired cars:</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Hire Date:
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Marka
+        </th>
+        <th>
+            Client
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.HireDate.ToString("yyyy-MM-dd")
+            </td>
+            <td>
+                @item.HiredCar.Model
+            </td>
+
+            <td>
+                @item.HiredCar.Brand.Name
+            </td>
+            <td>
+                @item.HiringCustomer.Name
+            </td>
+            <td>
+                <a asp-action="Return" asp-route-id="@item.Id">Return</a>
+            </td>
+        </tr>
+
+    }
+</table>
