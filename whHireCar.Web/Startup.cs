@@ -13,6 +13,8 @@ namespace whHireCar.Web
 {
     public class Startup
     {
+        private CarService carService;// = new CarService();
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,12 +28,16 @@ namespace whHireCar.Web
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICarService, CarService>();
+            //services.AddSingleton<ICarService, CarService>();
 
-            services.AddMvc();
+            //carService = new CarService();
+            //services.AddSingleton(typeof(ICarService), carService);
+
+           services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -44,6 +50,13 @@ namespace whHireCar.Web
             }
 
             app.UseStaticFiles();
+
+            dbContext.DataSeed();
+
+            if(env.IsStaging())
+            {
+                Console.WriteLine("staging version");
+            }
 
             app.UseMvc(routes =>
             {

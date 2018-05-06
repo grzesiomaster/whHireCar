@@ -15,11 +15,10 @@
 
   <ItemGroup>
     <Compile Remove="ApplicationUser.cs" />
-    <Compile Remove="Migrations\00000000000000_CreateIdentitySchema.cs" />
-    <Compile Remove="Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
-    <Compile Remove="Migrations\20180218232625_HireCarInit.cs" />
-    <Compile Remove="Migrations\20180218232625_HireCarInit.Designer.cs" />
-    <Compile Remove="Migrations\ApplicationDbContextModelSnapshot.cs" />
+    <Compile Remove="data\Brand.cs" />
+    <Compile Remove="data\Car.cs" />
+    <Compile Remove="data\Customer.cs" />
+    <Compile Remove="data\Hire.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,7 +46,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\whHireCar.Common\whHireCar.Common.csproj" />
   </ItemGroup>
 
 </Project>

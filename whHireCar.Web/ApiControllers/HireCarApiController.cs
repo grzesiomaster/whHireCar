@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using whHireCar.Common;
 using whHireCar.Domain;
 
 namespace whHireCar.Web.ApiControllers
