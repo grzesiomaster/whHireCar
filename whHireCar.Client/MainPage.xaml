@@ -1,0 +1,71 @@
+﻿<Page
+    x:Class="whHireCar.Client.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:whHireCar.Client"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Thickness x:Key="DefaultMargin">5</Thickness>
+
+        <!--<Style TargetType="Button">
+            <Setter Property="Margin" Value="{StaticResource DefaultMargin}" />
+        </Style>-->
+        <!--<Style TargetType="Button">
+            <Setter Property="Margin" Value="{StaticResource DefaultMargin}" />
+            <Setter Property="FontSize" Value="20"/>
+        </Style>-->
+
+        <Style TargetType="ListBox">
+            <Setter Property="Margin" Value="{StaticResource DefaultMargin}"   />
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="{StaticResource DefaultMargin}"   />
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="{StaticResource DefaultMargin}"   />
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+    </Page.Resources>
+
+    <Pivot Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <PivotItem Header="Get and delete">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="ButtonGet"
+                    Content="Get"
+                    Click="ButtonGet_Click" />
+                <ListBox 
+                    x:Name="lstBx"
+                    
+                         Grid.Row="1"
+                         />
+                <!--SelectedItem="{x:Bind personToDelete, Mode=TwoWay}"  />-->
+                <!--<Button x:Name="ButtonDelete"
+                    Content="Delete"
+                    Click="ButtonDelete_Click" 
+                    Grid.Row="2" />-->
+            </Grid>
+        </PivotItem>
+        <!--<PivotItem Header="Post">
+            <StackPanel>
+                <TextBlock Text="First Name:"/>
+                <TextBox Text="{x:Bind personToPost.Name, Mode=TwoWay}" />
+
+                <Button x:Name="ButtonPost"
+                    Content="Post"
+                    Click="ButtonPost_Click" />
+            </StackPanel>
+        </PivotItem>-->
+    </Pivot>
+</Page>

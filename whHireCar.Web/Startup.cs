@@ -13,7 +13,7 @@ namespace whHireCar.Web
 {
     public class Startup
     {
-        private CarService carService;// = new CarService();
+        //private CarService carService;// = new CarService();
 
         public Startup(IConfiguration configuration)
         {
